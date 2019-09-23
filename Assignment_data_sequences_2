@@ -1,0 +1,11 @@
+My Codes with annotations in parenthesis: 
+efetch -db=sequences -id=NC_008535.1 -format=gb>Weekly_assignment2.gbk (this is to download the source file in genbank format)
+Head Weekly_assignment2.gbk (to view the first q0 lines of file and ascertain correct file was downloaded)
+python genbank_to_fasta.py Weekly_assignment2.gbk weekly_assignment.fasta (to convert the genbank file to fasta using biopython)
+cat weekly_assignment2.fasta | uniq -c (to make a count of all the protein subunits of the new .fasta file and also view new file
+Nano chromosome_protein_list.txt (enter list of all proteins present) and then ctrl+X, Y and save text file. 
+efetch -db=protein -id=YP_817489.1 (This is the protein database ID of the ATP synthase beta in the original .fasta file) -format=fasta>ATP_synthase_Beta.fasta (to save the new file separately as a fasta file)
+cat ATP_synthase_Beta.fasta file to view new file
+Answers to the questions are as follows: 
+The number of protein sequences in the chloroplast is 86
+There are 7 proteins (CoarCp015-CoarCp025) in the photosystem subunit of the chromosome
