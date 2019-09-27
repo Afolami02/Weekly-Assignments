@@ -7,5 +7,5 @@ Nano chromosome_protein_list.txt (enter list of all proteins present) and then c
 efetch -db=protein -id=YP_817489.1 (This is the protein database ID of the ATP synthase beta in the original .fasta file) -format=fasta>ATP_synthase_Beta.fasta (to save the new file separately as a fasta file)
 cat ATP_synthase_Beta.fasta file to view new file
 Answers to the questions are as follows: 
-The number of protein sequences in the chloroplast is 86
+The number of protein sequences in the chloroplast is 85
 There are 7 proteins (CoarCp015-CoarCp025) in the photosystem subunit of the chromosome
