@@ -1,4 +1,5 @@
 My codes are written below for the alignments/mapping reference to a reads class below with explanations where necessary
+conda install entrez-direct (to re-install e-utilities in my interphase)
 mkdir mapping on the in-class-assignments directory, followed by cd .. mapping
 gdown.pl https://drive.google.com/file/d/1_6i6DYCYAQFpEQOmZ_89TQWr86o5-lFC/edit C.hydro_6008_R1.fastq (use gdown.pl function to download the paired raw reads)
 gdown.pl https://drive.google.com/file/d/1JyizRZkyymBsAee3bk1Ju5FAsxoP1LWM/edit C.hydro_6008_R2.fastq (use gdown.pl function to download the paired raw reads)
