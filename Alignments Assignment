@@ -1,1 +1,10 @@
+My codes are written below for the alignments/mapping reference to a reads class below with explanations where necessary
+mkdir mapping on the in-class-assignments directory, followed by cd .. mapping
+gdown.pl https://drive.google.com/file/d/1_6i6DYCYAQFpEQOmZ_89TQWr86o5-lFC/edit C.hydro_6008_R1.fastq (use gdown.pl function to download the paired raw reads)
+gdown.pl https://drive.google.com/file/d/1JyizRZkyymBsAee3bk1Ju5FAsxoP1LWM/edit C.hydro_6008_R2.fastq (use gdown.pl function to download the paired raw reads)
+efetch -db=sequences id=CP000141.1 -format=fasta>C.hydro_reference.fasta (use e-utility tool to get the reference C.hyfro sequence from NCBI database)
+bowtie2-build C.hydrog_reference.fasta C.hydro (to index the reference sequence in C.hydro_reference.fasta)
+bowtie2 -x C.hydro -1 C.hydro_6008_R1.fastq -2 C.hydro_6008_R2.fastq -S C_hydro_6008.sam (to map the index reference into the raw sequencing data reads)
+Head C_hydro_6008.sam to check the information of the new alignment file
+The percentage of mapped reads to reference genome was 96.25% while percentage of non-mapped reads was 3.74%
 
