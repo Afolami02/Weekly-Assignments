@@ -3,10 +3,15 @@ conda install entrez-direct (to re-install e-utilities in my interphase)
 mkdir mapping on the in-class-assignments directory, followed by cd .. mapping
 gdown.pl https://drive.google.com/file/d/1PWWO5wVRRThLBXXEZjyWZHIb9udVcnCS/edit C.ferri.R1.fastq (use gdown.pl function to download the paired raw reads)
 gdown.pl https://drive.google.com/file/d/1mZFvpSIctuBihkOlQX9vhrkxng3cRmvK/edit C.ferri.R2.fastq (use gdown.pl function to download the paired raw reads)
-gdown.pl https://drive.google.com/file/d/1uoXQZeaismPEFe_rJjrkRdntDI0vBUNL/edit C.hydro_reference.fasta ( get the reference C.hyfro sequence from NCBI database)
+gdown.pl https://drive.google.com/file/d/1uoXQZeaismPEFe_rJjrkRdntDI0vBUNL/edit C.hydro_reference.fasta ( get the reference C.hydro sequence from NCBI database)
+fastqc C.ferri.R1.fastq and fastqc C.ferri.R2.fastq to perform quality assessment of the two test read sequences 
+(The R1 and R2 reads of the C.ferri needed no trimming since they had zero (0)poor sequences in their respective fastqc files and the got good phred scores)
+cutadapt -q 20,20 -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA -m 50 --max-n 0 -o C.ferri.R1.cutadapt.fastq -p C.ferri.R2.cutadapt.fastq C.ferri.R2.fastq C.ferri.R2.fastq
+(This will cut adaptors of the forward (R1) and reverse (R2) reads of C.ferri fastq data obtained)
+In the forward read (C.ferri.R1.fastq), the total reads filtered after adaptor trimming was 96.1% while for the reverse read (C.ferr1.R1.fastq) the value was 95.0%
+Also only 4.2% of the foward and reverse reads contained adaptors for each file. 
 bowtie2-build C.hydro_reference.fasta C.hydro (to index the reference sequence in C.hydro_reference.fasta)
 bowtie2 -x C.hydro -1 C.ferri.R1.fastq -2 C.ferri.R2.fastq -S C.ferri.sam (to map the index reference into the raw sequencing data reads)
 Head C.ferri.sam to check the information of the new alignment file
 grep -c "SRR" C.ferri.sam to count the number of paired alignment reads made (the number of paired alignments read are 20,000)
-The percentage of mapped reads to reference genome was 96.25% while percentage of non-mapped reads was 3.74%
-
+The percentage of mapped reads to reference genome was 74.52% while percentage of non-mapped reads was 26.48%. 
