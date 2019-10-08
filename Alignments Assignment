@@ -9,7 +9,7 @@ fastqc C.ferri.R1.fastq and fastqc C.ferri.R2.fastq to perform quality assessmen
 cutadapt -q 20,20 -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA -m 50 --max-n 0 -o C.ferri.R1.cutadapt.fastq -p C.ferri.R2.cutadapt.fastq C.ferri.R2.fastq C.ferri.R2.fastq
 (This will cut adaptors of the forward (R1) and reverse (R2) reads of C.ferri fastq data obtained)
 In the forward read (C.ferri.R1.fastq), the total reads filtered after adaptor trimming was 96.1% while for the reverse read (C.ferr1.R1.fastq) the value was 95.0%
-Also only 4.2% of the foward and reverse reads contained adaptors for each file. 
+Also, only 4.2% of the forward and reverse reads contained adaptors for each file. 
 bowtie2-build C.hydro_reference.fasta C.hydro (to index the reference sequence in C.hydro_reference.fasta)
 bowtie2 -x C.hydro -1 C.ferri.R1.fastq -2 C.ferri.R2.fastq -S C.ferri.sam (to map the index reference into the raw sequencing data reads)
 Head C.ferri.sam to check the information of the new alignment file
