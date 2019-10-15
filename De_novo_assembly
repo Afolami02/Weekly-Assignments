@@ -10,4 +10,5 @@ conda activate de_novo
 spades.py -k 21,51,71,91,111,127 --careful --pe1-1 N2.R1.cutadapt.fastq --pe1-2 N2.R2.cutadapt.fastq -o N2_spades_output
 cd N2_spades_output (enter the assembly output directory to view the metadata on the quality of the assembly)
 quast contigs.fasta -o Quast_contigs (to evaluate the quality of assembly via Quast)
+cd Quast_contigs
 Use winscp to assess the report files (pdf and .html) and assess quality of the assembly
