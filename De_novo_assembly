@@ -1,0 +1,13 @@
+down.pl https://drive.google.com/file/d/1_pIPjuGotpvuFF9K2ZtcWqPJ0sgEmpch/edit N2.R2.fastq.gz
+ gunzip N2.R2.fastq.gz to unzip file
+gdown.pl https://drive.google.com/file/d/1_-1eWk_VBIXiwujUqlYoRjAnq9Tjuvss/edit N2.R1.fastq.gz
+ gunzip N2.R1.fastq.gz to unzip file
+fastqc N2.R1.fastq and fastqc N2.R2.fastq
+Both the forward (N2.R1) and reverse (N2.R2) reads need trimming since the fastqc quality assessment reveals some poor per base sequence qualities and per base sequence contents
+cutadapt -q 27,27 -a TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG -A GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG -m 50 --max-n 0 -o N2.R1.cutadapt.fastq -p N2.R2.cutadapt.fastq N2.R1.fastq N2.R2.fastq
+(phred score of 27 for each read, TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG as forward adaptor, GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG as reverse adaptor, minimum lenght is 50 while maximum lenght is 0)
+conda activate de_novo
+spades.py -k 21,51,71,91,111,127 --careful --pe1-1 N2.R1.cutadapt.fastq --pe1-2 N2.R2.cutadapt.fastq -o N2_spades_output
+cd N2_spades_output (enter the assembly output directory to view the metadata on the quality of the assembly)
+quast contigs.fasta -o Quast_contigs (to evaluate the quality of assembly via Quast)
+Use winscp to assess the report files (pdf and .html) and assess quality of the assembly
