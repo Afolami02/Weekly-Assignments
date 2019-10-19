@@ -1,0 +1,5 @@
+wget https://github.com/stechtmann/BL4300-5300/raw/master/data/Weekly_Assignment_data/Unk_therm.faa (to download the unknown query)
+check the file downloaded using head/less Unk_therm.faa (to check identitiy of file, whether DNA sequence or Amino acid sequence). 
+makeblastdb -in Unk_therm.faa -dbtype prot -title Thermophile_protein (to make a blastable database of the unknown thermophile proteins)
+wget https://github.com/stechtmann/BL4300-5300/raw/master/data/Weekly_Assignment_data/HSP_prot.fasta (to download the reference to the query we are comparing the Unk.therm.faa to)
+blastp -db Unk_therm.faa -query HSP_prot.fasta -out HSP_BLAST.txt -outfmt 7
