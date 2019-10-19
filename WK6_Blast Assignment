@@ -3,3 +3,12 @@ check the file downloaded using head/less Unk_therm.faa (to check identitiy of f
 makeblastdb -in Unk_therm.faa -dbtype prot -title Thermophile_protein (to make a blastable database of the unknown thermophile proteins)
 wget https://github.com/stechtmann/BL4300-5300/raw/master/data/Weekly_Assignment_data/HSP_prot.fasta (to download the reference to the query we are comparing the Unk.therm.faa to)
 blastp -db Unk_therm.faa -query HSP_prot.fasta -out HSP_BLAST.txt -outfmt 7
+cat HSP_BLAST.txt (to evaluate output file and make extrapolations)
+
+
+The unknown thermophilic organism contains 3 heat shock proteins, these are the WP_103686269.1 small partial heat shock protein sHSP20, AAA18300.1 Hsp70 and BAE76252.1 molecular chaperone HSP90 family respectively. 
+The HSPs identified by this BLAST query had a significant e-value that ranged from 1.57e-139 to 0.36;2.	the HSPs had a decent alignment to query length cover ratio and then a negligible number of sequence mismatches;
+the HSPs identified had a high bit-score which was significant (ranging from 29.3 to a whopping 416) and 4.	all the three HSPs had a fairly good similarity index by percentage identity ranging from 25% to 42%. 
+Based on the output file after the BLAST query (HSP_BLAST.txt), only 2 HSPs have paralogs. These are the WP_103686269.1 small partial heat shock protein sHSP20 and the AAA18300.1 Hsp70 respectively. The WP_103686269.1 small partial heat shock protein sHSP20 had 4 paralogs while the AAA18300.1 Hsp70 had 3 paralogs. 
+The paralogs of HSPs are observed based on the significantly low e-value, high bit score as well as low mismatches. The 4 paralogs of WP_103686269.1 small partial heat shock protein sHSP20 had e-values averaging 2.11e-14 with a bit-score average of 62.8 while the AAA18300.1 Hsp70 had e-values averaging 7.26e-05 with a bit-score average of 41.2. 
+Similarly, since paralogs are closely related proteins with non-synonymous changes, the very low e-values, the high bit-scores and the relatively low mismatch lengths showed how highly conserved the heath shock protein families WP_103686269.1 sHSP20 and AAA18300.1 Hsp70 are in thermophilic organisms.
