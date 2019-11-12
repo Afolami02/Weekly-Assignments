@@ -1,0 +1,45 @@
+wget https://github.com/stechtmann/BL4300-5300/raw/master/data/Weekly_Assignment_data/WA_counts.csv (to get the counts table)
+wget https://github.com/stechtmann/BL4300-5300/raw/master/data/Weekly_Assignment_data/WA8_Metadata.csv (to get the metadata)
+
+
+CODES FOR R STATISTIC
+head(WA_counts)
+head(WA8_Metadata)
+class(WA_counts)
+WA_counts <- as.data.frame(WA_counts)
+class(WA_counts)
+WA8_Metadata <- as.data.frame(WA8_Metadata)
+class(WA8_Metadata)
+all(names(WA_counts)[-1]==WA8_Metadata$id)
+library(DESeq2)
+library(tidyverse)
+
+
+W8_dds <- DESeqDataSetFromMatrix(countData= WA_counts, 
+                              colData=WA8_Metadata, 
+                              design=~dex, 
+                              tidy=TRUE)
+W8_dds
+dds <- DESeq(W8_dds)
+W8_res <- results(dds, tidy=TRUE)
+head(W8_res)
+W8_res <- tbl_df(W8_res)
+W8_res
+W8_res2 <- arrange(W8_res, padj)
+W8_res2
+W8_res3 <- filter(W8_res2, padj<=0.05 & log2FoldChange>=2)
+W8_res3
+W8_res4 <- filter(W8_res2, padj<=0.05 & log2FoldChange<=-2)
+W8_res4
+
+W8_res<-mutate(W8_res,significance=ifelse(padj<0.05,"Significant","Non-significant"))
+
+W8_res
+W8_res2<-mutate(W8_res2,significance=ifelse(padj<0.05,"Significant","Non-significant"))
+W8_res2
+W8_res3<-mutate(W8_res3,significance=ifelse(padj<0.05,"Significant","Non-significant"))
+W8_res3
+W8_res4<-mutate(W8_res4,significance=ifelse(padj<0.05,"Significant","Non-significant"))
+W8_res4
+
+Check the W8_res2, W8_res3 and W8_res4 for answers to questions
