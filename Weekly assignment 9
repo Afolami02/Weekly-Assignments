@@ -1,0 +1,25 @@
+For Volcano plots with control points in blue and mutant points in red 
+W8_res<-mutate(WA_ans,treatment=ifelse(padj<0.05,"mutant","control")) (To include a new parameter called treatment for mutant and control)
+ggplot(W8_res) +
+  geom_point(aes(x=log2FoldChange, y=-log10(padj),color=treatment)) +
+  scale_color_manual(values=c("blue", "red"))
+  
+For a box plot of the expression of the gene with the highest positive fold change (Solyc11g028040.1.1)
+plotCounts(W8_dds, gene="Solyc11g028040.1.1", intgroup="dex", returnData=TRUE) %>%
+  ggplot(aes(dex,count))+
+  geom_boxplot(aes(fill=dex))+
+  scale_y_log10() + 
+  ggtitle("Box plot of Solyc11g028040.1.1 gene")
+  
+  
+For a box plot of the expression of the gene with the highest negative fold change (Solyc09g089500.2.1)
+plotCounts(W8_dds, gene="Solyc09g089500.2.1", intgroup="dex", returnData=TRUE) %>%
+  ggplot(aes(dex,count))+
+  geom_boxplot(aes(fill=dex))+
+  scale_y_log10() + 
+  ggtitle("Box plot of Solyc09g089500.2.1 gene")
+ 
+For MA plots of log10baseMean against log2Foldchange {MA plots are log10 of the mean expression (baseMean) of a gene on the x-axis and log2FoldChange on the y-axis}
+ggplot(W8_res) +
+  geom_point(aes(x=log10(baseMean), y=log2FoldChange,color=significance)) +
+  scale_color_manual(values=c("red", "blue"))
