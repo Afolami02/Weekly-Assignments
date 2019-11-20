@@ -1,8 +1,13 @@
 For Volcano plots with control points in blue and mutant points in red 
-W8_res<-mutate(WA_ans,treatment=ifelse(padj<0.05,"mutant","control")) (To include a new parameter called treatment for mutant and control)
-ggplot(W8_res) +
-  geom_point(aes(x=log2FoldChange, y=-log10(padj),color=treatment)) +
-  scale_color_manual(values=c("blue", "red"))
+WA_ans3<-mutate(WA_ans,treatment=ifelse(padj<0.05,"mutant","control")) (To include a new parameter called treatment for mutant and control)
+WA_ans4<-mutate(WA_ans,treatment=ifelse(padj<0.05,"mutant","control"))
+ggplot() + 
+  geom_point(data=WA_ans3, aes(x=log2FoldChange, y=-log10(padj)), color='blue') + 
+  geom_point(data=WA_ans4, aes(x=log2FoldChange, y=-log10(padj)), color='red') +
+  scale_color_manual(values=c("blue", "red"))+
+  ggtitle("Sample Types Gene Expression (Blue-control, Red- mutant)") +
+  xlab("Log2 Fold Change") +
+  ylab("-Log10 Adjusted P-value")
   
 For a box plot of the expression of the gene with the highest positive fold change (Solyc11g028040.1.1)
 plotCounts(W8_dds, gene="Solyc11g028040.1.1", intgroup="dex", returnData=TRUE) %>%
